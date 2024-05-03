@@ -1,8 +1,8 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const TaskSelectionHead = () => {
   return (
-    <Container sx={{ marginTop: 10 }}>
+    <Box sx={{ marginTop: 10 }}>
       <Typography fontSize={32} fontWeight={600}>
         Task Selection
       </Typography>
@@ -10,7 +10,7 @@ const TaskSelectionHead = () => {
         Select your desired category and service to find the right task you need
         done!
       </Typography>
-    </Container>
+    </Box>
   );
 };
 

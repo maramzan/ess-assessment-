@@ -8,7 +8,7 @@ import StepConnector, {
 import { StepIconProps } from "@mui/material/StepIcon";
 import { steps } from "../../../../constants";
 import theme from "../../../../utils/theme";
-import { Container, Typography, colors } from "@mui/material";
+import { Box, Typography, colors } from "@mui/material";
 
 const ColorlibConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -66,7 +66,7 @@ function ColorlibStepIcon(props: StepIconProps) {
 
 export default function CustomizedSteppers() {
   return (
-    <Container>
+    <Box>
       <Typography textAlign="center" variant="h5" fontWeight={600}>
         Project Progress
       </Typography>
@@ -83,6 +83,6 @@ export default function CustomizedSteppers() {
           </Step>
         ))}
       </Stepper>
-    </Container>
+    </Box>
   );
 }
