@@ -1,8 +1,8 @@
 import Accordion, { AccordionSlots } from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Fade from "@mui/material/Fade";
 import { Box } from "@mui/material";
 import BagImage from "../../../../assets/png/Bag.png";
@@ -10,6 +10,29 @@ import BagWhite from "../../../../assets/png/bagWhite.png";
 import { CATEGORIES } from "../../../../constants";
 import theme from "../../../../utils/theme";
 import React, { useState } from "react";
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from "@mui/material/AccordionSummary";
+import { styled } from "@mui/material/styles";
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+  <MuiAccordionSummary
+    expandIcon={<ChevronRightIcon sx={{ fontSize: "0.9rem" }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? "rgba(255, 255, 255, .05)"
+      : "rgba(0, 0, 0, .03)",
+  flexDirection: "row-reverse",
+  "& .MuiAccordionSummary-expandIconWrapper": {
+    transform: "rotate(-90deg)",
+  },
+  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+    transform: "rotate(0deg)",
+  },
+}));
 
 export default function TaskSelection() {
   const [expanded, setExpanded] = useState(false);
@@ -24,7 +47,7 @@ export default function TaskSelection() {
     if (selectedTags.includes(selectedCategory)) {
       setSelectedTags((prev) => prev.filter((tag) => tag !== selectedCategory));
     } else {
-      selectedTags.length < 4 &&
+      selectedTags.length < 3 &&
         setSelectedTags((prev) => [...prev, selectedCategory]);
     }
   };
@@ -41,6 +64,10 @@ export default function TaskSelection() {
           "& .MuiAccordion-region": {
             height: expanded ? "auto" : 0,
           },
+          ".MuiAccordionSummary-content": {
+            display: "flex",
+            justifyContent: "space-between",
+          },
           "& .MuiAccordionDetails-root": {
             display: expanded ? "block" : "none",
           },
@@ -55,6 +82,7 @@ export default function TaskSelection() {
           <Typography fontSize={24} fontWeight={600}>
             Job Category
           </Typography>
+          <Typography>{`${selectedTags.length}/3 `}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ display: "flex" }}>
           {CATEGORIES.map((category) => (
