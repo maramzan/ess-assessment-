@@ -20,11 +20,8 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     expandIcon={<ChevronRightIcon sx={{ fontSize: "0.9rem" }} />}
     {...props}
   />
-))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
+))(() => ({
+  //
   flexDirection: "row-reverse",
   "& .MuiAccordionSummary-expandIconWrapper": {
     transform: "rotate(-90deg)",
@@ -74,15 +71,23 @@ export default function TaskSelection() {
         }}
       >
         <AccordionSummary
-          sx={{ marginTop: 5, padding: 2 }}
+          sx={{
+            marginTop: 5,
+            padding: 1,
+          }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography fontSize={24} fontWeight={600}>
-            Job Category
+          <Typography fontSize={24} fontWeight={600} display={"flex"}>
+            Job Category{" "}
+            {selectedTags.map((tag) => (
+              <span key={tag} style={{ fontWeight: 400, marginLeft: "10px" }}>
+                {`• ${tag}`}
+              </span>
+            ))}
           </Typography>
-          <Typography>{`${selectedTags.length}/3 `}</Typography>
+          <Typography fontSize={16}>{`${selectedTags.length}/3`}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ display: "flex" }}>
           {CATEGORIES.map((category) => (
