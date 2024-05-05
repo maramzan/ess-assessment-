@@ -76,9 +76,9 @@ export const TASK_SELECTION = [
     task: TASK,
     type: "task",
   },
-  // {
-  //   heading: "Task Details",
-  //   task: SERVICES,
-  //   type: "taskDetails",
-  // },
+  {
+    id: 4,
+    heading: "Task Details",
+    type: "taskDetails",
+  },
 ];

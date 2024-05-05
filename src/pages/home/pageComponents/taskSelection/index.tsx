@@ -3,7 +3,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import BagImage from "../../../../assets/png/Bag.png";
 import BagWhite from "../../../../assets/png/bagWhite.png";
 import {
@@ -19,6 +19,8 @@ import MuiAccordionSummary, {
 } from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import ServicesCard from "../serviceCard";
+import RowRadioButtonsGroup from "../checkbox";
+import MyDropzone from "../dropzone";
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
@@ -168,6 +170,28 @@ export default function TaskSelection() {
                     </Box>
                   );
                 })}
+
+              {item.id === 4 && (
+                <Box sx={{ width: "100%", padding: "0 20px" }}>
+                  <RowRadioButtonsGroup title="Question 1:" />
+                  <RowRadioButtonsGroup title="Question 2:" />
+                  <RowRadioButtonsGroup title="Question 3:" />
+                  <Typography marginTop={2} fontSize={16} fontWeight={600}>
+                    Note
+                  </Typography>
+                  <TextField
+                    sx={{ width: "100%", marginTop: 1 }}
+                    id="outlined-multiline-static"
+                    placeholder="Describe the problem, the size, dimensions etc"
+                    multiline
+                    rows={5}
+                  />
+                  <Typography marginTop={2} fontSize={16} fontWeight={600}>
+                    Attach An Image
+                  </Typography>
+                  <MyDropzone />
+                </Box>
+              )}
             </AccordionDetails>
           </Accordion>
         );
