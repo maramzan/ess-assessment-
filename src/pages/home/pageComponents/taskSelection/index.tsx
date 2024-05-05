@@ -95,9 +95,7 @@ export default function TaskSelection() {
                   {item.id === 3 && selectedTask && `• ${selectedTask}`}
                 </span>
               </Typography>
-              <Typography
-                fontSize={16}
-              >{`${selectedTags.length}/3`}</Typography>
+              <Typography fontSize={16}>{`${item.id}/4`}</Typography>
             </AccordionSummary>
 
             <AccordionDetails sx={{ display: "flex" }}>
