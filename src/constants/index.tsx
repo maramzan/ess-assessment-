@@ -57,7 +57,7 @@ export const TASK = [
   },
 ];
 
-export const FAQS = [
+export const TASK_SELECTION = [
   {
     id: 1,
     heading: "Job category",
@@ -70,12 +70,12 @@ export const FAQS = [
     service: SERVICES,
     type: "service",
   },
-  // {
-  //   id: 3,
-  //   heading: "Task",
-  //   task: TASK,
-  //   type: "task",
-  // },
+  {
+    id: 3,
+    heading: "Task",
+    task: TASK,
+    type: "task",
+  },
   // {
   //   heading: "Task Details",
   //   task: SERVICES,

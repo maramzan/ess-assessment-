@@ -1,19 +1,24 @@
-import Accordion, { AccordionSlots } from "@mui/material/Accordion";
+import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Fade from "@mui/material/Fade";
 import { Box } from "@mui/material";
 import BagImage from "../../../../assets/png/Bag.png";
 import BagWhite from "../../../../assets/png/bagWhite.png";
-import { CATEGORIES } from "../../../../constants";
+import {
+  CATEGORIES,
+  SERVICES,
+  TASK,
+  TASK_SELECTION,
+} from "../../../../constants";
 import theme from "../../../../utils/theme";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
+import ServicesCard from "../serviceCard";
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
@@ -21,7 +26,6 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     {...props}
   />
 ))(() => ({
-  //
   flexDirection: "row-reverse",
   "& .MuiAccordionSummary-expandIconWrapper": {
     transform: "rotate(-90deg)",
@@ -32,101 +36,149 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 }));
 
 export default function TaskSelection() {
-  const [expanded, setExpanded] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  const handleExpansion = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
-  };
+  const [selectedService, setSelectedService] = useState("");
+  const [selectedTask, setSelectedTask] = useState("");
 
   const checkService = (e: React.MouseEvent<HTMLDivElement>) => {
     const selectedCategory = e.currentTarget.innerText;
     if (selectedTags.includes(selectedCategory)) {
       setSelectedTags((prev) => prev.filter((tag) => tag !== selectedCategory));
     } else {
-      selectedTags.length < 3 &&
-        setSelectedTags((prev) => [...prev, selectedCategory]);
+      // selectedTags.length < 1 &&
+      setSelectedTags([selectedCategory]);
     }
   };
 
+  const handleServiceClick = useCallback((serviceName: string) => {
+    setSelectedService(serviceName);
+  }, []);
+
+  const handleTaskClick = useCallback((taskName: string) => {
+    setSelectedTask(taskName);
+  }, []);
+
   return (
     <div>
-      <Accordion
-        expanded={expanded}
-        onChange={handleExpansion}
-        slots={{ transition: Fade as AccordionSlots["transition"] }}
-        slotProps={{ transition: { timeout: 400 } }}
-        sx={{
-          marginTop: 5,
-          "& .MuiAccordion-region": {
-            height: expanded ? "auto" : 0,
-          },
-          ".MuiAccordionSummary-content": {
-            display: "flex",
-            justifyContent: "space-between",
-          },
-          "& .MuiAccordionDetails-root": {
-            display: expanded ? "block" : "none",
-          },
-        }}
-      >
-        <AccordionSummary
-          sx={{
-            marginTop: 5,
-            padding: 1,
-          }}
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
-          <Typography fontSize={24} fontWeight={600} display={"flex"}>
-            Job Category{" "}
-            {selectedTags.map((tag) => (
-              <span key={tag} style={{ fontWeight: 400, marginLeft: "10px" }}>
-                {`• ${tag}`}
-              </span>
-            ))}
-          </Typography>
-          <Typography fontSize={16}>{`${selectedTags.length}/3`}</Typography>
-        </AccordionSummary>
-        <AccordionDetails sx={{ display: "flex" }}>
-          {CATEGORIES.map((category) => (
-            <Box
-              onClick={checkService}
-              key={category}
-              sx={{
-                ...classes.categoryTag,
-                ...(selectedTags.includes(category) && classes.selectedTag),
-              }}
+      {TASK_SELECTION.map((item) => {
+        return (
+          <Accordion
+            key={item.id}
+            sx={{
+              marginTop: 5,
+              "& .MuiAccordion-region": {
+                ...(item.id === 1 ? { height: "auto" } : {}),
+              },
+              ".MuiAccordionSummary-content": {
+                display: "flex",
+                justifyContent: "space-between",
+              },
+              "& .MuiAccordionDetails-root": {
+                ...(item.id === 1 ? { display: "block" } : {}),
+              },
+            }}
+          >
+            <AccordionSummary
+              sx={classes.accordionSummary}
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2-content"
+              id="panel2-header"
             >
-              <img
-                src={selectedTags.includes(category) ? BagWhite : BagImage}
-                alt="Bag"
-              />
-              <Typography
-                color={selectedTags.includes(category) ? "white" : "black"}
-                fontSize={20}
-                fontWeight={500}
-                marginLeft={2}
-              >
-                {category}
+              <Typography fontSize={24} fontWeight={600} display={"flex"}>
+                {item.heading}
+
+                <span style={{ fontWeight: 400, marginLeft: "10px" }}>
+                  {item.id === 1 && selectedTags.map((tag) => `• ${tag}`)}
+                  {item.id === 2 && selectedService && `• ${selectedService}`}
+                  {item.id === 3 && selectedTask && `• ${selectedTask}`}
+                </span>
               </Typography>
-            </Box>
-          ))}
-          <Typography fontSize={24} color={theme.palette.text.secondary}>
-            Need HVAC or Water filtration services?{" "}
-            <span style={{ fontWeight: 600, textDecoration: "underline" }}>
-              Call to request Home Advisor
-            </span>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+              <Typography
+                fontSize={16}
+              >{`${selectedTags.length}/3`}</Typography>
+            </AccordionSummary>
+
+            <AccordionDetails sx={{ display: "flex" }}>
+              {item.id === 1 && (
+                <>
+                  {CATEGORIES.map((category) => (
+                    <Box
+                      onClick={checkService}
+                      key={category}
+                      sx={{
+                        ...classes.categoryTag,
+                        ...(selectedTags.includes(category) &&
+                          classes.selectedTag),
+                      }}
+                    >
+                      <img
+                        src={
+                          selectedTags.includes(category) ? BagWhite : BagImage
+                        }
+                        alt="Bag"
+                      />
+                      <Typography
+                        color={
+                          selectedTags.includes(category) ? "white" : "black"
+                        }
+                        fontSize={20}
+                        fontWeight={500}
+                        marginLeft={2}
+                      >
+                        {category}
+                      </Typography>
+                    </Box>
+                  ))}
+                  <Typography
+                    fontSize={24}
+                    color={theme.palette.text.secondary}
+                  >
+                    Need HVAC or Water filtration services?{" "}
+                    <span
+                      style={{ fontWeight: 600, textDecoration: "underline" }}
+                    >
+                      Call to request Home Advisor
+                    </span>
+                  </Typography>
+                </>
+              )}
+
+              {item.id === 2 &&
+                SERVICES.map((service) => {
+                  return (
+                    <Box
+                      key={service.id}
+                      onClick={() => handleServiceClick(service?.name)}
+                      sx={{ paddingRight: 2 }}
+                    >
+                      <ServicesCard service={service} key={service.id} />
+                    </Box>
+                  );
+                })}
+
+              {item.id === 3 &&
+                TASK.map((task) => {
+                  return (
+                    <Box
+                      key={task.id}
+                      onClick={() => handleTaskClick(task?.name)}
+                      sx={{ paddingRight: 2 }}
+                    >
+                      <ServicesCard service={task} key={task.id} />
+                    </Box>
+                  );
+                })}
+            </AccordionDetails>
+          </Accordion>
+        );
+      })}
     </div>
   );
 }
 
 const classes = {
   categoryTag: {
+    cursor: "pointer",
     padding: "10px 20px",
     border: "2px solid rgba(0,0,0,0.15)",
     display: "inline-flex",
@@ -137,5 +189,9 @@ const classes = {
   },
   selectedTag: {
     backgroundColor: theme.palette.secondary.main,
+  },
+  accordionSummary: {
+    marginTop: 5,
+    padding: 1,
   },
 };

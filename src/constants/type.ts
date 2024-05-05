@@ -3,7 +3,7 @@ export interface Service {
   name: string;
   image: string;
   description: string;
-  handleCardClick?: (id: number) => void;
+  // handleCardClick?: (id: number) => void;
   // onClickCard?: (id) => void;
 }
 

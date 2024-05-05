@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Container>
+      <Container sx={{ paddingBottom: 5 }}>
         <CustomizedSteppers />
         <TaskSelectionHead />
         <TaskSelection />

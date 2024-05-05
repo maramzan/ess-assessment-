@@ -7,12 +7,7 @@ import { CardActionArea } from "@mui/material";
 
 export default function ServicesCard({ service }: { service: Service }) {
   return (
-    <Card
-      onClick={() => {
-        service?.handleCardClick?.(service?.id);
-      }}
-      sx={{ maxWidth: 250, borderRadius: 2 }}
-    >
+    <Card sx={{ maxWidth: 250, borderRadius: 2 }}>
       <CardActionArea>
         <CardMedia
           component="img"
