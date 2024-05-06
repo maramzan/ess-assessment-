@@ -24,6 +24,7 @@ To run the project, use the command: `npm run dev`
 
 ## File Structure
 
+<pre>
 .
 ├── src
 │ ├── assets
@@ -54,3 +55,4 @@ To run the project, use the command: `npm run dev`
 │ └── index.tsx
 ├── package.json
 └── README.md
+</pre>
