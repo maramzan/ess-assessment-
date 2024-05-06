@@ -2,7 +2,11 @@ import { Box, Stack, Typography } from "@mui/material";
 import CustomButton from "../../../../components/button";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
-const BookingSection = () => {
+const BookingSection = ({
+  continueNextStep,
+}: {
+  continueNextStep: () => void;
+}) => {
   return (
     <Box
       sx={{
@@ -13,7 +17,9 @@ const BookingSection = () => {
         flexDirection: "column",
       }}
     >
-      <CustomButton onClick={() => {}}>Continue to Booking</CustomButton>
+      <CustomButton onClick={continueNextStep}>
+        Continue to Booking
+      </CustomButton>
       <Stack
         direction="row"
         justifyContent="center"

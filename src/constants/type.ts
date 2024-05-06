@@ -23,5 +23,3 @@ export interface FAQ {
   task?: Task[];
   type: FAQType;
 }
-
-export const FOOTER_LINKS = ["Link", "Link", "Link", "Link", "Link"];

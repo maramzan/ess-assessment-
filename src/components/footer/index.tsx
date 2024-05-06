@@ -4,7 +4,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Behance from "../../assets/png/behance.png";
 import { useMemo } from "react";
-import { FOOTER_LINKS } from "../../constants/type";
+import { FOOTER_LINKS } from "../../constants";
 
 const SocialIconButton = ({ icon }: { icon: JSX.Element }) => (
   <IconButton>{icon}</IconButton>
@@ -54,5 +54,6 @@ const classes = {
     borderTop: "1px solid rgba(0,0,0,0.15)",
     margin: "10 30px 0 30px",
     padding: 8,
+    marginTop: 5,
   },
 };

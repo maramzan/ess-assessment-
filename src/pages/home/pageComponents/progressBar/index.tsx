@@ -9,6 +9,7 @@ import { StepIconProps } from "@mui/material/StepIcon";
 import { steps } from "../../../../constants";
 import theme from "../../../../utils/theme";
 import { Box, Typography, colors } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
 
 const ColorlibConnector = styled(StepConnector)(() => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -42,6 +43,9 @@ const ColorlibStepIconRoot = styled("div")<{
   height: 24,
   borderRadius: "50%",
   border: "2px solid",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   borderColor: colors.common.black,
   ...(ownerState.active && {
     backgroundColor: theme.palette.primary.main,
@@ -60,11 +64,17 @@ function ColorlibStepIcon(props: StepIconProps) {
     <ColorlibStepIconRoot
       ownerState={{ completed, active }}
       className={className}
-    />
+    >
+      {completed && <CheckIcon sx={{ fontSize: 18 }} />}
+    </ColorlibStepIconRoot>
   );
 }
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers({
+  currentStep,
+}: {
+  currentStep: number;
+}) {
   return (
     <Box>
       <Typography textAlign="center" variant="h5" fontWeight={600}>
@@ -73,7 +83,7 @@ export default function CustomizedSteppers() {
 
       <Stepper
         alternativeLabel
-        activeStep={0}
+        activeStep={currentStep}
         connector={<ColorlibConnector />}
         sx={{ marginTop: 5 }}
       >
