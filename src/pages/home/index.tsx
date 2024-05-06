@@ -17,17 +17,27 @@ const Home = () => {
     }
   };
 
+  const renderStepContent = (step: number) => {
+    switch (step) {
+      case 0:
+        return (
+          <Container sx={{ paddingBottom: 5 }}>
+            <TaskSelectionHead />
+            <TaskSelection />
+          </Container>
+        );
+      case 1:
+        return <Schedule />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <Navbar />
       <CustomizedSteppers currentStep={currentStep} />
-      {currentStep === 0 && (
-        <Container sx={{ paddingBottom: 5 }}>
-          <TaskSelectionHead />
-          <TaskSelection />
-        </Container>
-      )}
-      {currentStep === 1 && <Schedule />}
+      {renderStepContent(currentStep)}
       <BookingSection continueNextStep={continueNextStep} />
       <Footer />
     </>

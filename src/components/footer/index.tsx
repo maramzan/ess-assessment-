@@ -16,7 +16,7 @@ const Footer = () => {
       <FacebookIcon />,
       <InstagramIcon />,
       <TwitterIcon />,
-      <img src={Behance} />,
+      <img src={Behance} alt="Behance" />,
     ],
     []
   );

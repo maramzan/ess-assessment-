@@ -17,9 +17,14 @@ import Logo from "../../assets/png/logo.png";
 import { pages } from "../../constants";
 
 const getIcon = (page: string) => {
-  if (page === "Services") return <ExpandMoreOutlinedIcon fontSize="small" />;
-  if (page === "Login") return <ArrowRightAltIcon fontSize="small" />;
-  return null;
+  switch (page) {
+    case "Services":
+      return <ExpandMoreOutlinedIcon fontSize="small" />;
+    case "Login":
+      return <ArrowRightAltIcon fontSize="small" />;
+    default:
+      return null;
+  }
 };
 
 const Navbar = () => {

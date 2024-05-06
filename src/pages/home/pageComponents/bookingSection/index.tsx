@@ -26,7 +26,7 @@ const BookingSection = ({
         alignItems={"center"}
         marginTop={2}
       >
-        <Typography fontWeight="bold" fontSize={18}>
+        <Typography variant="h5" fontWeight="bold">
           Add Another Task
         </Typography>
         <ArrowRightAltIcon />

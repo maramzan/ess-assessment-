@@ -89,7 +89,7 @@ export default function TaskSelection() {
               <Typography fontSize={24} fontWeight={600} display={"flex"}>
                 {item.heading}
 
-                <span style={{ fontWeight: 400, marginLeft: "10px" }}>
+                <span style={classes.selectedService}>
                   {item.id === 1 && selectedTags.map((tag) => `• ${tag}`)}
                   {item.id === 2 && selectedService && `• ${selectedService}`}
                   {item.id === 3 && selectedTask && `• ${selectedTask}`}
@@ -216,4 +216,5 @@ const classes = {
     marginTop: 5,
     padding: 1,
   },
+  selectedService: { fontWeight: 400, marginLeft: "10px" },
 };

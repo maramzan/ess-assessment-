@@ -34,6 +34,11 @@ const ColorlibConnector = styled(StepConnector)(() => ({
   },
 }));
 
+const activeCompletedStyle = {
+  backgroundColor: theme.palette.primary.main,
+  borderColor: theme.palette.primary.main,
+};
+
 const ColorlibStepIconRoot = styled("div")<{
   ownerState: { completed?: boolean; active?: boolean };
 }>(({ ownerState }) => ({
@@ -47,14 +52,8 @@ const ColorlibStepIconRoot = styled("div")<{
   alignItems: "center",
   justifyContent: "center",
   borderColor: colors.common.black,
-  ...(ownerState.active && {
-    backgroundColor: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main,
-  }),
-  ...(ownerState.completed && {
-    backgroundColor: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main,
-  }),
+  ...(ownerState.active && activeCompletedStyle),
+  ...(ownerState.completed && activeCompletedStyle),
 }));
 
 function ColorlibStepIcon(props: StepIconProps) {
