@@ -24,4 +24,33 @@ To run the project, use the command: `npm run dev`
 
 ## File Structure
 
-. ├── src │ ├── assets │ │ └── png //contains all png images here │ ├── components // contains all the common components │ │ ├── button │ │ ├── footer │ │ └── navbar │ ├── constants │ │ ├── index.tsx //contains all the constant data used │ │ └── type.ts //contains all the types │ ├── pages │ │ └── home │ │ ├── pageComponents //all components of homepage │ │ │ ├── bookingSection │ │ │ ├── calender │ │ │ ├── checkbox │ │ │ ├── dropzone │ │ │ ├── progressBar │ │ │ ├── schedule │ │ │ ├── serviceCard │ │ │ ├── taskSelection │ │ │ └── taskSelectionHead │ │ └── index.tsx │ ├── utils │ │ └── theme.ts │ ├── App.tsx │ └── index.tsx ├── package.json └── README.md
+.
+├── src
+│ ├── assets
+│ │ └── png //contains all png images here
+│ ├── components // contains all the common components
+│ │ ├── button
+│ │ ├── footer
+│ │ └── navbar
+│ ├── constants
+│ │ ├── index.tsx //contains all the constant data used
+│ │ └── type.ts //contains all the types
+│ ├── pages
+│ │ └── home
+│ │ ├── pageComponents //all components of homepage
+│ │ │ ├── bookingSection
+│ │ │ ├── calender
+│ │ │ ├── checkbox
+│ │ │ ├── dropzone
+│ │ │ ├── progressBar
+│ │ │ ├── schedule
+│ │ │ ├── serviceCard
+│ │ │ ├── taskSelection
+│ │ │ └── taskSelectionHead
+│ │ └── index.tsx
+│ ├── utils
+│ │ └── theme.ts
+│ ├── App.tsx
+│ └── index.tsx
+├── package.json
+└── README.md
